@@ -8,6 +8,7 @@ export class BlogService {
   constructor(
     @InjectRepository(models.User)
     private usersRepository: Repository<models.User>,
+    @InjectRepository(models.Article)
     private articlesRepository: Repository<models.Article>,
   ) {}
 
