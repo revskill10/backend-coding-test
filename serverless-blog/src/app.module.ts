@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import importToArray from 'import-to-array';
 import * as _models from './domain/models';
 import { BlogHttpModule } from './apps/blog/blog.http.module';
 import './domain/helpers/paginate';
+import { ScheduleModule } from '@nestjs/schedule';
+import { CronsModule } from './crons/crons.module';
+
 const models = importToArray(_models);
 @Module({
   imports: [
@@ -20,8 +21,8 @@ const models = importToArray(_models);
       synchronize: true,
     }),
     BlogHttpModule,
+    ScheduleModule.forRoot(),
+    CronsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

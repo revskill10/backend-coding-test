@@ -29,4 +29,12 @@ export class BlogService {
   async getAllArticles({ query }: { query?: ISPaginateQuery}) {
       return await this.articlesRepository.createQueryBuilder().sPaginate(query).getMany();
   }
+
+  async randomizeArticles() {
+      const randomWord = (Math.random() + 1).toString(36).substring(7);
+      return await this.articlesRepository.createQueryBuilder()
+      .update(models.Article)
+      .set({ content: () => `content || ${randomWord}` })
+      .returning("id");
+  }
 }
