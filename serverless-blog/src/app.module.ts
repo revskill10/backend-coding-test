@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import importToArray from 'import-to-array';
 import * as _models from './domain/models';
 import { BlogHttpModule } from './apps/blog/blog.http.module';
+import './domain/helpers/paginate';
 const models = importToArray(_models);
 @Module({
   imports: [
