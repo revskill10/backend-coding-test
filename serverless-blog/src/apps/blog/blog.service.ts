@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ISPaginateQuery } from 'src/domain/helpers/paginate';
 import { Repository } from 'typeorm';
 import * as models from '../../domain/models'
 import * as dto from './blog.dto';
@@ -23,5 +24,9 @@ export class BlogService {
           content: articleDTO.content,
           author: user
       })
+  }
+
+  async getAllArticles({ query }: { query?: ISPaginateQuery}) {
+      return await this.articlesRepository.createQueryBuilder().sPaginate(query).getMany();
   }
 }
