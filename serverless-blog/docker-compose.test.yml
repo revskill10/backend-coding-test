@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    ports:
+      - published: 5432
+        target: 5432
+    environment:
+      POSTGRES_DB: what
+      POSTGRES_USER: is
+      POSTGRES_PASSWORD: love
