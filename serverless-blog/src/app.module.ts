@@ -1,11 +1,27 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FirebaseAuthStrategy } from './firebase/firebase-auth.strategy';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import importToArray from 'import-to-array';
+import * as _models from './domain/models';
+import { BlogHttpModule } from './apps/blog/blog.http.module';
+import './domain/helpers/paginate';
+const models = importToArray(_models);
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'is',
+      password: 'love',
+      database: 'what',
+      entities: models,
+      synchronize: true,
+    }),
+    BlogHttpModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, FirebaseAuthStrategy],
+  providers: [AppService],
 })
 export class AppModule {}
