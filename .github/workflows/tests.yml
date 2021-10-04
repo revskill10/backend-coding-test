@@ -64,5 +64,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
         working-directory: serverless-blog
-      - run: yarn test
+      - run: yarn test:ci
         working-directory: serverless-blog
