@@ -6,7 +6,7 @@ import { BlogService } from 'src/apps/blog/blog.service';
 export class CronsService {
     constructor(
         @Inject(BlogService) private blogService: BlogService,
-    )
+    ){}
   private readonly logger = new Logger(CronsService.name);
 
   @Cron('0 18 * * *')
